@@ -78,7 +78,7 @@ cp config.example.toml config.toml
 ```
 
 Translation runs against an **OpenAI-compatible chat endpoint** (e.g.
-`http://atlantis:11435`, serving **`gemma4-26b-a4b_q4`**). The endpoint serves
+`http://localhost:11435`, serving **`gemma4-26b-a4b_q4`**). The endpoint serves
 a **single model loaded at server startup**, so `[translate].model` may be left
 `""` to use whatever is loaded; set it to a model id to have it verified
 against `GET /v1/models` (and sent as the `model` field).
@@ -93,7 +93,7 @@ against `GET /v1/models` (and sent as the `model` field).
 Env override example:
 
 ```bash
-export KOTODAMA_ENDPOINT="http://atlantis:11435"
+export KOTODAMA_ENDPOINT="http://localhost:11435"
 ```
 
 ## Usage
@@ -106,8 +106,8 @@ kotodama video.mp4
 kotodama episode.mkv -c config.toml -o out/english.srt
 
 # endpoint / model overrides
-kotodama video.mp4 --endpoint http://atlantis:11435
-kotodama video.mp4 --endpoint http://atlantis:11435 \
+kotodama video.mp4 --endpoint http://localhost:11435
+kotodama video.mp4 --endpoint http://localhost:11435 \
     --model gemma4-26b-a4b_q4   # or --model "" to use the server's loaded model
 ```
 

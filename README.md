@@ -35,6 +35,9 @@ SRT writers (pysubs2)
     pipeline). Timestamp fidelity is critical for subtitles, so `large-v3`
     stays the default; a two-pass kotoba+aligner approach is a future option.
 - `vad_filter=True` (Silero) to skip non-speech; `condition_on_previous_text=False`
+  to avoid repetition loops. VAD tunable via a `[transcribe.vad_parameters]`
+  config sub-table (e.g. `threshold = 0.35`) — the stage-1 log prints how much
+  audio VAD kept, so over-filtering is visible.
   to avoid repetition loops on long-form Japanese.
 - **`task='transcribe'` only** — built-in translation is never used; translation
   is stage 2's job.

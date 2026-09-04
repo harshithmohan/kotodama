@@ -5,6 +5,11 @@ model = "large-v3"                       # or a local CTranslate2 model director
 vad_filter = true
 condition_on_previous_text = false
 device = "auto"                          # auto | cpu | cuda
+# Optional Silero VAD tuning (keys passed straight to faster-whisper).
+# Lower threshold if quiet/whispered speech is filtered out:
+# [transcribe.vad_parameters]
+# threshold = 0.35
+# min_silence_duration_ms = 500
 
 [translate]
 model = ""                               # the endpoint serves a single model loaded at server

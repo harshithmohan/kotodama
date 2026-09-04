@@ -33,6 +33,7 @@ def transcribe(
     media_path: str,
     model: str = "large-v3",
     vad_filter: bool = True,
+    vad_parameters: dict | None = None,
     condition_on_previous_text: bool = False,
     device: str = "auto",
 ) -> list[Segment]:
@@ -54,10 +55,11 @@ def transcribe(
     )
     whisper = WhisperModel(model, device=resolved, compute_type=compute_type)
 
-    iterator, _info = whisper.transcribe(
+    iterator, info = whisper.transcribe(
         media_path,
         language="ja",
         vad_filter=vad_filter,
+        vad_parameters=vad_parameters or None,
         condition_on_previous_text=condition_on_previous_text,
         task="transcribe",
     )
@@ -73,5 +75,12 @@ def transcribe(
             end="\r",
         )
     print(file=sys.stderr)
+    if vad_filter and getattr(info, "duration_after_vad", None) is not None:
+        print(
+            f"[stage1] VAD kept {info.duration_after_vad:.1f}s of "
+            f"{info.duration:.1f}s — if this is far below 100%, speech after "
+            f"this point is being filtered; tune [transcribe.vad_parameters]",
+            file=sys.stderr,
+        )
     print(f"[stage1] done: {len(segments)} Japanese segments", file=sys.stderr)
     return segments

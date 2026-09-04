@@ -152,6 +152,7 @@ def main(argv: list[str] | None = None) -> int:
         str(input_path),
         model=tcfg.get("model", "large-v3"),
         vad_filter=bool(tcfg.get("vad_filter", True)),
+        vad_parameters=tcfg.get("vad_parameters") or None,
         condition_on_previous_text=bool(tcfg.get("condition_on_previous_text", False)),
         device=tcfg.get("device", "auto"),
     )

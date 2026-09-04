@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kotodama"
+version = "0.1.0"
+description = "Two-stage JA->EN subtitle pipeline: faster-whisper transcription + LLM translation via an OpenAI-compatible endpoint."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "faster-whisper>=1.0.0",
+    "pysubs2>=1.7.0",
+    "requests>=2.31.0",
+    "tomli>=2.0.0; python_version < '3.11'",
+]
+
+[project.scripts]
+kotodama = "kotodama.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.DS_Store
+*.log
+# never commit media or generated subs
+*.mp4
+*.mkv
+*.mp3
+*.wav
+*.srt

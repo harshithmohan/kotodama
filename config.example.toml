@@ -1,0 +1,17 @@
+# kotodama configuration (copy to config.toml and edit).
+
+[transcribe]
+model = "large-v3"                       # or a local CTranslate2 model directory path
+vad_filter = true
+condition_on_previous_text = false
+device = "auto"                          # auto | cpu | cuda
+
+[translate]
+model = ""                               # the endpoint serves a single model loaded at server
+                                         # startup; leave "" to use it, or set a model id
+                                         # reported by GET /v1/models to pin + verify one
+endpoint = "http://localhost:11435"      # your OpenAI-compatible endpoint URL;
+                                         # overridable via --endpoint flag or KOTODAMA_ENDPOINT env
+                                         # (resolution order: env > flag > this file > built-in default
+                                         #  http://localhost:11434)
+context_window = 5                       # surrounding segments sent as context per request

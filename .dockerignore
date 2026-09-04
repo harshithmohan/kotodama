@@ -1,0 +1,16 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.git/
+.gitignore
+.DS_Store
+*.log
+config.toml
+# never bake media or generated subs into the image
+*.mp4
+*.mkv
+*.mp3
+*.wav
+*.srt

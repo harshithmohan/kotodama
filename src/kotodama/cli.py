@@ -37,6 +37,13 @@ def _load_config(path: str | None) -> dict[str, Any]:
             "context_window": 5,
         },
     }
+    if path is None:
+        # Auto-detect: cwd first, then the container's mounted location
+        for candidate in (Path("config.toml"), Path("/app/config.toml")):
+            if candidate.is_file():
+                print(f"[config] using {candidate}", file=sys.stderr)
+                path = str(candidate)
+                break
     if path:
         cfg_path = Path(path)
         if not cfg_path.is_file():
